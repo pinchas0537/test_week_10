@@ -2,10 +2,22 @@ import { getByCount, getOne, insertOne } from "../DAL/usersD.js"
 
 export function validString(parm) {
     try {
-        if (parm === undefined || parm === null) return ` is undefined or null!`
-        if (typeof (parm) !== "string") return ` is not string!`
-        if (parm === "") return `is empty string!`
-        if (parm.trim() === "") return `it's just spaces!`
+        if (parm === undefined || parm === null) {
+            console.log(` is undefined or null!`)
+            return false
+        }
+        if (typeof (parm) !== "string") {
+            console.log(` is not string!`)
+            return false
+        }
+        if (parm === "") {
+            console.log(`is empty string!`)
+            return false
+        }
+        if (parm.trim() === "") {
+            console.log(`it's just spaces!`)
+            return false
+        }
         return true
     } catch (error) {
         throw error

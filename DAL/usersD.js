@@ -14,8 +14,7 @@ export async function insertOne(data = {}) {
 
 export async function editencryptedMessagesCount(username) {
     try {
-        let count = 0
-        const result = await db.collection(collection).updateOne({ username: username }, { $set: { encryptedMessagesCount: count ++ } })
+        const result = await db.collection(collection).updateOne({ username: username }, { $inc: { encryptedMessagesCount: 1 } })
         return result
     } catch (error) {
         throw error

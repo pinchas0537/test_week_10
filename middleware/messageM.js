@@ -5,20 +5,20 @@ export async function validMessage(req, res, next) {
     try {
         const { username, password, message, cipherType } = req.body
         const validUsers = validString(username)
-        if (validUsers !== true) return res.status(400).json({ "message": "username or password invalid!" })
+        if (validUsers === false) return res.status(400).json({ "message": "username or password invalid!" })
         const validpasswors = validString(password)
-        if (validpasswors !== true) return res.status(400).json({ "message": "username or password invalid!" })
+        if (validpasswors === false) return res.status(400).json({ "message": "username or password invalid!" })
         const validMessage = validString(message)
-        if (validMessage !== true) return res.status(400).json({ "message": "message invalid!" })
+        if (validMessage === false) return res.status(400).json({ "message": "message invalid!" })
         const validType = validString(cipherType)
-        if (validType !== true) return res.status(400).json({ "message": "cipherType invalid!" })
+        if (validType === false) return res.status(400).json({ "message": "cipherType invalid!" })
         next()
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
 }
 
-export async function userAuthentication(req, res, next) {
+export async function userAuthenticationM(req, res, next) {
     try {
         const { username, password } = req.body
         const result = await login(username, password)
@@ -31,8 +31,8 @@ export async function userAuthentication(req, res, next) {
 
 export async function validId(req, res, next) {
     const { messageId } = req.body
-    const result = await validNumber(messageId)
-    if (validMessage !== true) return res.status(400).json({ "message": "id invalid!" })
+    const result =  validNumber(messageId)
+    if (result === false) return res.status(400).json({ "message": "id invalid!" })
     next()
 }
 

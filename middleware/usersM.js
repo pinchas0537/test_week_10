@@ -4,9 +4,9 @@ export async function validUser(req, res, next) {
     try {
         const { username, password } = req.body
         const validUsers = validString(username)
-        if (validUsers !== true) return res.status(400).json({ "message": "username or password invalid!" })
+        if (validUsers === false) return res.status(400).json({ "message": "username or password invalid!" })
         const validpasswors = validString(password)
-        if (validpasswors !== true) return res.status(400).json({ "message": "username or password invalid!" })
+        if (validpasswors === false) return res.status(400).json({ "message": "username or password invalid!" })
         next()
     } catch (error) {
         return res.status(500).json({ error: error.message })
